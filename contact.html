@@ -200,34 +200,34 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#contactForm').on('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
     
-                // Collect form data
-                const formData = {
-                    name: $('#name').val(),
-                    email: $('#email').val(),
-                    subject: $('#subject').val(),
-                    message: $('#message').val(),
-                };
+            // Collect the form data
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('subject', document.getElementById('subject').value);
+            formData.append('message', document.getElementById('message').value);
+            formData.append('contact', true); // Indicate this is for the contact form
     
-                // Send AJAX request
-                $.ajax({
-                    type: 'POST',
-                    url: 'contac.php', // Replace with your PHP script that processes the form
-                    data: formData,
-                    success: function (response) {
-                        // Handle success response
-                        alert('Message sent successfully!');
-                        // You can reset the form if needed
-                        $('#contactForm')[0].reset();
-                    },
-                    error: function (error) {
-                        // Handle error response
-                        alert('Error sending message. Please try again.');
-                    }
-                });
+            // Send the form data using fetch
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Your message has been sent successfully!');
+                    window.reload(); // Reload the page after successful submission
+                } else {
+                    alert('There was an error sending your message: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem sending your message. Please try again later.');
             });
         });
     </script>
