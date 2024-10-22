@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Port       = 587;
 
             // Email to the site owner
-            $to_owner = 'trapbosy@gmail.com'; // Replace with your email
+            $to_owner = 'aansong@raakac.org'; // Replace with your email
             $owner_subject = "New Appointment Request from $name";
             $owner_message = "Appointment Details:\n"
                 . "Name: $name\n"

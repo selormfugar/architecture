@@ -29,7 +29,7 @@
 
                 //Recipients
                 $mail->setFrom($email, $name);                             // Sender email and name
-                $mail->addAddress('trapbosy@gmail.com');               // Add recipient (site owner)
+                $mail->addAddress('aansong@raakac.org');               // Add recipient (site owner)
                 $mail->addReplyTo($email, $name);                          // Reply-to email
 
                 // Content
