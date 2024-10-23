@@ -90,7 +90,7 @@
                         <a href="project.html" class="dropdown-item">Our Projects</a>
                         <a href="team.html" class="dropdown-item">Team Members</a>
                         <a href="appointment.html" class="dropdown-item">Appointment</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        <!-- <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link active">Contact</a>
@@ -221,24 +221,20 @@
             .then(data => {
                 if (data.status === 'success') {
                     alert('Your message has been sent successfully!');
-                    window.reload(); // Reload the page after successful submission
-                } else {
-                    alert('There was an error sending your message: ' + data.message);
-                }
+                    document.getElementById('contactForm').reset();
+                      window.reload(); // Reload the page after successful submission
+                } 
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was a problem sending your message. Please try again later.');
-            });
+           
         });
     </script>
     
     <!-- Google Map Start -->
-    <div class="container-xxl pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
+    <!-- <div class="container-xxl pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
         <iframe class="w-100 mb-n2" style="height: 450px;"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
             frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-    </div>
+    </div> -->
     <!-- Google Map End -->
 
 
@@ -249,7 +245,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-light mb-4">Address</h3>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>28 OBLEKU CR, ACCRA,GHANA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+23324 312 0620</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+233 24 312 0620</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>raak@raakac.org</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-twitter"></i></a>

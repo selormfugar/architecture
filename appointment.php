@@ -21,16 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             // Server settings
+            $mail->SMTPDebug = 2; // Enable SMTP debugging (set to 0 in production)
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'josefsfugar@gmail.com';
-            $mail->Password   = 'ntrkejktwgmjjvwm';
+            $mail->Username   = 'josefsfugar@gmail.com'; // Your Gmail address
+            $mail->Password   = 'ntrkejktwgmjjvwm'; // App-specific password (ensure you are using the correct app password)
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
+            // Ensure that 'josefsfugar@gmail.com' is used for the "from" address
+            $mail->setFrom('raak@raakac.org', $name);
+
             // Email to the site owner
-            $to_owner = 'aansong@raakac.org'; // Replace with your email
+            $to_owner = 'trapbosy@gmail.com'; // Replace with the site owner's email
             $owner_subject = "New Appointment Request from $name";
             $owner_message = "Appointment Details:\n"
                 . "Name: $name\n"
@@ -42,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 . "Message:\n$message";
 
             // Send email to the site owner
-            $mail->setFrom($email, $name);
             $mail->addAddress($to_owner); // Site owner's email
             $mail->Subject = $owner_subject;
             $mail->Body    = nl2br($owner_message); // Convert line breaks to HTML
@@ -60,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Send confirmation email to visitor
             $mail->clearAddresses(); // Clear the previous recipient
-            $mail->setFrom('no-reply@example.com', 'Your Company'); // Customize the From field
             $mail->addAddress($to_visitor); // Visitor's email
             $mail->Subject = $visitor_subject;
             $mail->Body    = nl2br($visitor_message); // Convert line breaks to HTML
@@ -72,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Respond with success
             echo json_encode(['status' => 'success']);
         } catch (Exception $e) {
+            // Use PHPMailer error info for better debugging
             echo json_encode(['status' => 'error', 'message' => 'Mail sending failed: ' . $mail->ErrorInfo]);
         }
     } else {
