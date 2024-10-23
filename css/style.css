@@ -213,6 +213,31 @@ h6,
     transition: .5s;
 }
 
+
+.modal-dialog {
+    max-width: 800px; /* Set maximum width for larger modals */
+}
+
+.modal-body {
+    padding: 2rem; /* Increased padding for better spacing */
+}
+
+.modal-text {
+    margin-bottom: 1.5rem; /* Space below the paragraph */
+}
+
+.modal-list {
+    margin: 0; /* Remove default margin */
+    padding-left: 1.5rem; /* Indent the list */
+}
+
+.modal-list li {
+    margin-bottom: 0.5rem; /* Space between list items */
+    line-height: 1.5; /* Increase line height for better readability */
+}
+
+
+
 .header-carousel .owl-dots .owl-dot.active {
     width: 60px;
     height: 60px;
