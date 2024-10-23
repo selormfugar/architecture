@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Port       = 587;
 
             // Ensure that 'josefsfugar@gmail.com' is used for the "from" address
-            $mail->setFrom('raak@raakac.org', $name);
+            $mail->addAddress('raak@raakac.org');
 
             // Email to the site owner
-            $to_owner = 'trapbosy@gmail.com'; // Replace with the site owner's email
+            $to_owner = 'raak@raakac.org'; // Replace with the site owner's email
             $owner_subject = "New Appointment Request from $name";
             $owner_message = "Appointment Details:\n"
                 . "Name: $name\n"
