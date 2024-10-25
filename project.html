@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/RAAK.png" rel="icon">
+    <link href="img/icons/21.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,6 +225,102 @@
     </div>
     <!-- Project End -->
         
+<!-- Ongoing Project Start -->
+<div class="container-xxl py-5 bg-light">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h4 class="section-title">Ongoing Project</h4>
+            <h1 class="display-5 mb-4">Urban Development Project Gallery</h1>
+            <p>Explore different phases and highlights of our ongoing urban development project through this gallery.</p>
+        </div>
+        
+        <!-- Masonry Grid Container -->
+        <div id="masonry-grid" class="row">
+            <!-- Gallery Images -->
+            <div class="masonry-item col-lg-4 col-md-6">
+                <div class="project-item">
+                    <img class="img-fluid w-100" src="img/urban-phase1.jpg" alt="Phase 1 - Site Preparation">
+                    <div class="project-overlay">
+                        <h4 class="text-white">Phase 1 - Site Preparation</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item col-lg-4 col-md-6">
+                <div class="project-item">
+                    <img class="img-fluid w-100" src="img/urban-phase2.jpg" alt="Phase 2 - Foundation">
+                    <div class="project-overlay">
+                        <h4 class="text-white">Phase 2 - Foundation</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item col-lg-4 col-md-6">
+                <div class="project-item">
+                    <img class="img-fluid w-100" src="img/urban-phase3.jpg" alt="Phase 3 - Structure">
+                    <div class="project-overlay">
+                        <h4 class="text-white">Phase 3 - Structure</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item col-lg-4 col-md-6">
+                <div class="project-item">
+                    <img class="img-fluid w-100" src="img/urban-phase4.jpg" alt="Phase 4 - Facade Work">
+                    <div class="project-overlay">
+                        <h4 class="text-white">Phase 4 - Facade Work</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ongoing Project End -->
+
+<!-- CSS for Masonry Layout -->
+<style>
+    #masonry-grid {
+        column-count: 3;
+        column-gap: 1em;
+    }
+    .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1em;
+    }
+    .project-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .project-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 1em;
+        text-align: center;
+    }
+</style>
+
+<!-- JavaScript for Masonry Grid Initialization -->
+<script>
+    window.addEventListener('load', function() {
+        const masonryGrid = document.getElementById('masonry-grid');
+        let resizeTimeout;
+
+        function resizeMasonryGrid() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Reset columns for masonry layout to trigger proper realignment
+                masonryGrid.style.columnCount = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+            }, 250);
+        }
+
+        resizeMasonryGrid();  // Initial call
+        window.addEventListener('resize', resizeMasonryGrid);  // Update on window resize
+    });
+</script>
+
+<!-- Ongoing Project End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
