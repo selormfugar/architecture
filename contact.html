@@ -30,7 +30,31 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    
+    <style>
+        #form-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+#form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+#form-message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+    </style>
 </head>
 <body>
     <!-- Spinner Start -->
@@ -86,18 +110,7 @@
                         <a href="team.html" class="nav-item nav-link">Team Members</a>
              
                         <a href="service.html" class="nav-item nav-link">Our Services</a>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                    <div class="dropdown-menu border-0 m-0">
-                        <a href="service.html" class="dropdown-item">Architecture</a>
-                        <a href="service.html" class="dropdown-item">3D Animation</a>
-                        <a href="service.html" class="dropdown-item">House Planning</a>
-                        <a href="service.html" class="dropdown-item">Interior Design</a>
-                        <a href="service.html" class="dropdown-item">Renovation</a>
-                        <a href="service.html" class="dropdown-item">Construction</a>
-                    </div>
-                </div> -->
-                <!-- <a href="contact.html" class="nav-item nav-link active">Contact</a> -->
+              
             </div>
             <a href="appointment.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Appointment</a>
         </div>
@@ -163,14 +176,15 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <p class="mb-4">We'd love to hear from you! If you have any questions, feedback, or need assistance, please feel free to reach out to us using the contact form below. 
                         Your message is important to us, and we aim to respond as quickly as possible.</p>
-                    <form id="contactForm">
+                        <div id="form-message"></div>
+                           <form id="contactForm">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                                     <label for="name">Your Name</label>
                                 </div>
-                            </div>
+                            </div><input type="text" name="website" style="display:none;">
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="email" placeholder="Your Email" required>
