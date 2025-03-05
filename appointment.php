@@ -1,4 +1,7 @@
 <?php
+
+require_once 'config.php'; // Path to your config file outside web root
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php'; // Ensure you have the correct path to autoload.php
@@ -62,12 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 4. Check for spam patterns in message
     $spam_patterns = [
-        '/\bviagra\b/i',
-        '/\bcasino\b/i',
-        '/\bfree money\b/i',
-        '/\btrade\s+now\b/i',
-        '/\bmake money fast\b/i',
-        '/\binvestment opportunity\b/i',
+        '/\bHello\b/i',
+        '/\bAlice\b/i',
+        '/\bJohn\b/i',
+        '/\bI\s+write\b/i',
+        '/\bTestUser\b/i',
+        '/\bMyName\b/i',
         // Add more patterns as needed
     ];
 
@@ -99,10 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Server settings
             $mail->SMTPDebug = 0; // Disable debugging in production (set to 2 for testing)
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+            $mail->Host       = $smtp_host;
             $mail->SMTPAuth   = true;
-            $mail->Username   = getenv('SMTP_USERNAME') ?: 'josefsfugar@gmail.com'; // Use environment variable
-            $mail->Password   = getenv('SMTP_PASSWORD') ?: 'ntrkejktwgmjjvwm';            
+            $mail->Username   = $smtp_username;
+            $mail->Password   = $smtp_password;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
             
