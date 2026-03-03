@@ -128,8 +128,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Get SMTP settings from environment variables (set in config.php)
         $smtp_host = getenv('SMTP_HOST');
+        $smtp_port = (int) (getenv('SMTP_PORT') ?: 587);
         $smtp_username = getenv('SMTP_USERNAME');
         $smtp_password = getenv('SMTP_PASSWORD');
+        $smtp_encryption = getenv('SMTP_ENCRYPTION') ?: PHPMailer::ENCRYPTION_STARTTLS;
         
         // Verify environment variables are set
         if (empty($smtp_host) || empty($smtp_username) || empty($smtp_password)) {
@@ -142,8 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->SMTPAuth   = true;
         $mail->Username   = $smtp_username;
         $mail->Password   = $smtp_password;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        $mail->SMTPSecure = $smtp_encryption;
+        $mail->Port       = $smtp_port;
         
         // Recipients - use your organizational email
         $mail->setFrom($smtp_username, 'GMNOA Contact Form');

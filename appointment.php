@@ -10,6 +10,20 @@ require 'vendor/autoload.php'; // Ensure you have the correct path to autoload.p
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $smtp_host = getenv('SMTP_HOST');
+    $smtp_port = (int) (getenv('SMTP_PORT') ?: 587);
+    $smtp_username = getenv('SMTP_USERNAME');
+    $smtp_password = getenv('SMTP_PASSWORD');
+    $smtp_encryption = getenv('SMTP_ENCRYPTION') ?: PHPMailer::ENCRYPTION_STARTTLS;
+    $mail_from_address = getenv('MAIL_FROM_ADDRESS') ?: $smtp_username;
+    $mail_from_name = getenv('MAIL_FROM_NAME') ?: 'RAAKAC Appointment System';
+    $appointment_to_address = getenv('APPOINTMENT_TO_ADDRESS') ?: 'raak@raakac.org';
+
+    if (empty($smtp_host) || empty($smtp_username) || empty($smtp_password)) {
+        echo json_encode(['status' => 'error', 'message' => 'SMTP configuration is incomplete.']);
+        exit;
+    }
+
     // 1. Implement rate limiting
     $user_ip = $_SERVER['REMOTE_ADDR'];
     $current_time = time();
@@ -106,11 +120,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->SMTPAuth   = true;
             $mail->Username   = $smtp_username;
             $mail->Password   = $smtp_password;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->SMTPSecure = $smtp_encryption;
+            $mail->Port       = $smtp_port;
             
             // Set sender (From address)
-            $mail->setFrom('raak@raakac.org', 'RAAKAC Appointment System');
+            $mail->setFrom($mail_from_address, $mail_from_name);
             $mail->addReplyTo($email, $name); // Set reply-to as the customer's email
             
             // Prepare admin email with enhanced information
@@ -146,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             
             // Send email to the site owner
-            $mail->addAddress('raak@raakac.org'); // Site owner's email
+            $mail->addAddress($appointment_to_address); // Site owner's email
             $mail->isHTML(true);
             $mail->Subject = "New Appointment: $service on $date";
             $mail->Body = $admin_message;
